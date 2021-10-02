@@ -5,7 +5,11 @@
  */
 package MainJavaSwing;
 
+import MainJavaSwing.domain.Dictionary;
+import MainJavaSwing.domain.ManagerWord;
+
 import javax.swing.*;
+import java.util.Scanner;
 
 /**
  *
@@ -19,6 +23,9 @@ public class MainFrame extends javax.swing.JFrame {
      */
     final int WIDTH = 625, HEIGHT = 534;
     //final int MENU_WIDTH = 200, MENU_HEIGHT = 50;
+
+    private static boolean isRunning = false ;
+    private static ManagerWord managerWord ;
     public MainFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -735,6 +742,46 @@ public class MainFrame extends javax.swing.JFrame {
                 new MainFrame().setVisible(true);
             }
         });
+
+        //Phiên bản console
+        managerWord = new ManagerWord() ;
+        isRunning = true ;
+        Scanner scanner = new Scanner(System.in);
+        int choose ;
+
+        while(isRunning) {
+            showMenu();
+            choose = scanner.nextInt() ;
+            solution(choose);
+        }
+    }
+    // Hiển thị Menu trên console
+    public static void showMenu(){
+        System.out.println("1. Tìm kiếm từ vựng");
+        System.out.println("2. Thêm một từ mới");
+        System.out.println("3. Sửa ");
+        System.out.println("4. Xóa ");
+        System.out.println("Lựa chọn của bạn");
+    }
+    // chay chuon trinh tren console
+    public static void solution(int choose){
+        switch (choose) {
+            case 1 :
+                managerWord.getDictionaries("") ;
+                break;
+            case 2 :
+                Dictionary dictionary = new Dictionary("","") ;
+                managerWord.addWord(dictionary);
+                break;
+            case 3 :
+                managerWord.updateWord();
+                break;
+            case 4 :
+                managerWord.deleteWord(new Dictionary("",""));
+                break;
+            default:
+                break ;
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
