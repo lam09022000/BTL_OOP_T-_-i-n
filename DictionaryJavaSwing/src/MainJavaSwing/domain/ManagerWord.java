@@ -1,35 +1,48 @@
 package MainJavaSwing.domain;
 
+import MainJavaSwing.DAO.UseDAO;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ManagerWord {
+    private UseDAO useDAO = new UseDAO() ;
 
-    private List<Dictionary> dictionaryArrayList = new ArrayList<>() ;
+    private List<Word> wordList = new ArrayList<>() ;
 
     public ManagerWord() {
     }
 
-    public ManagerWord(List<Dictionary> dictionaryArrayList) {
-        this.dictionaryArrayList = dictionaryArrayList;
+    public ManagerWord(List<Word> dictionaryArrayList) {
+        this.wordList = dictionaryArrayList;
     }
 
-    public List<Dictionary> getDictionaryArrayList() {
-        return dictionaryArrayList;
+    public List<Word> getWordList() {
+        return wordList;
     }
 
-    public void setDictionaryArrayList(List<Dictionary> dictionaryArrayList) {
-        this.dictionaryArrayList = dictionaryArrayList;
+    public void setWordList(List<Word> wordList) {
+        this.wordList = wordList;
     }
 
-    public void addWord(Dictionary dictionary){
+    public void addWord(Word newWord){
         // Thêm Từ mới ở đây
-        System.out.println("Them tu moi");
+        if (newWord.getWordExplain() != "" && newWord.getWordTarget() != "") {
+            useDAO.save(newWord);
+            System.out.println("Them tu moi");
+        } else {
+            System.out.println("Them tu moi chua thanh cong");
+        }
     }
 
-    public void deleteWord(Dictionary dictionary){
+    public void deleteWord(Word word){
         //xoa mot tu ơ day
-        System.out.println("xoa mot tu");
+        if (word.getWordExplain() != "" && word.getWordTarget() != "") {
+            useDAO.delete(word);
+        } else {
+            System.out.println("Xoa tu chua thanh cong");
+        }
+
     }
 
     public void updateWord(){
@@ -37,10 +50,20 @@ public class ManagerWord {
         System.out.println("sua tu");
     }
 
-    public List<Dictionary> getDictionaries(String s){
+    public List<Word> getDictionaries(String s){
         //lấy ra từ điển ở đây
+        if (s != "null") {
+            useDAO.find(s) ;
+        }
         System.out.println("Tim kiem tu theo chuoi truyen vao");
         return null ;
+    }
+    public void show() {
+        if (wordList == null) {
+            System.out.println("chua co tu tim kiem");
+            return;
+        }
+        wordList.forEach(word -> word.show());
     }
 
 }

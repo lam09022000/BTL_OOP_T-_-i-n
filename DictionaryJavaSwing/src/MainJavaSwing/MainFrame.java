@@ -5,10 +5,10 @@
  */
 package MainJavaSwing;
 
-import MainJavaSwing.domain.Dictionary;
+import MainJavaSwing.DAO.UseDAO;
+import MainJavaSwing.domain.Word;
 import MainJavaSwing.domain.ManagerWord;
 
-import javax.swing.*;
 import java.util.Scanner;
 
 /**
@@ -744,15 +744,21 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         //Phiên bản console
+        try {
+            UseDAO useDAO = new UseDAO() ;
+            useDAO.getAll() ;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         managerWord = new ManagerWord() ;
         isRunning = true ;
-        Scanner scanner = new Scanner(System.in);
         int choose ;
-
+        Scanner scanner = new Scanner(System.in);
         while(isRunning) {
             showMenu();
             choose = scanner.nextInt() ;
-            solution(choose);
+            scanner.nextLine() ;
+            solution(choose,scanner);
         }
     }
     // Hiển thị Menu trên console
@@ -764,20 +770,40 @@ public class MainFrame extends javax.swing.JFrame {
         System.out.println("Lựa chọn của bạn");
     }
     // chay chuon trinh tren console
-    public static void solution(int choose){
+    public static void solution(int choose, Scanner scanner){
         switch (choose) {
             case 1 :
-                managerWord.getDictionaries("") ;
+                String findWord = "" ;
+                System.out.print("nhập từ cần tìm");
+                findWord = scanner.nextLine() ;
+                managerWord.getDictionaries(findWord) ;
                 break;
             case 2 :
-                Dictionary dictionary = new Dictionary("","") ;
-                managerWord.addWord(dictionary);
+                String addWordTarget = "" ;
+                String addWordExplain = "" ;
+                System.out.print("Nhap tu moi :");
+                addWordTarget = scanner.nextLine() ;
+                System.out.print("nhap nghia cua tu moi :");
+                addWordExplain = scanner.nextLine() ;
+                System.out.println(addWordExplain + addWordTarget);
+                Word addDictionary = new Word(addWordTarget,addWordExplain) ;
+                addDictionary.show();
+                managerWord.addWord(addDictionary);
                 break;
             case 3 :
+                String updateWordTarget = "" ;
+                String UpdateWordExplain = "" ;
+                System.out.print("Nhap tu moi :");
+                updateWordTarget = scanner.nextLine() ;
+                System.out.print("nhap nghia cua tu moi :");
+                UpdateWordExplain = scanner.nextLine() ;
+                System.out.println(UpdateWordExplain + updateWordTarget);
+                Word UpdateDictionary = new Word(updateWordTarget,UpdateWordExplain) ;
+                UpdateDictionary.show();
                 managerWord.updateWord();
                 break;
             case 4 :
-                managerWord.deleteWord(new Dictionary("",""));
+                managerWord.deleteWord(new Word("",""));
                 break;
             default:
                 break ;
