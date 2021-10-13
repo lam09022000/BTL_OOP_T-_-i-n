@@ -17,7 +17,7 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
-    final int WIDTH = 625, HEIGHT = 534;
+    final int WIDTH = 615, HEIGHT = 534;
     //final int MENU_WIDTH = 200, MENU_HEIGHT = 50;
     public MainFrame() {
         initComponents();
@@ -62,7 +62,6 @@ public class MainFrame extends javax.swing.JFrame {
         soundUS_Defi_JButton = new javax.swing.JButton();
         soundUK_Defi_JButton = new javax.swing.JButton();
         delete_Defi_JButton = new javax.swing.JButton();
-        translate_OutputDefi_JLabel = new javax.swing.JLabel();
         Revise_JPanel = new javax.swing.JPanel();
         word__InputRevise_JTextField = new javax.swing.JTextField();
         spelling__InputRevise_JTextField = new javax.swing.JTextField();
@@ -129,6 +128,8 @@ public class MainFrame extends javax.swing.JFrame {
             public String getElementAt(int i) { return strings[i]; }
         });
         listResultSearch_JList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listResultSearch_JList.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        listResultSearch_JList.setSelectionBackground(new java.awt.Color(51, 102, 255));
         listResultSearch_JList.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -184,6 +185,15 @@ public class MainFrame extends javax.swing.JFrame {
 
         findSearch_JButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainJavaSwing/Image/search.png"))); // NOI18N
         findSearch_JButton.setText("Find");
+        findSearch_JButton.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                findSearch_JButtonAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         javax.swing.GroupLayout SearchLayout = new javax.swing.GroupLayout(Search);
         Search.setLayout(SearchLayout);
@@ -339,6 +349,21 @@ public class MainFrame extends javax.swing.JFrame {
         Data_OutputDefi_JTextArea.setColumns(20);
         Data_OutputDefi_JTextArea.setRows(5);
         Data_OutputDefi_JTextArea.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        Data_OutputDefi_JTextArea.setMaximumSize(new java.awt.Dimension(164, 94));
+        Data_OutputDefi_JTextArea.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                Data_OutputDefi_JTextAreaAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        Data_OutputDefi_JTextArea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Data_OutputDefi_JTextAreaMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(Data_OutputDefi_JTextArea);
 
         word_OutputDefi_JLabel.setText("Từ t.anh");
@@ -354,8 +379,6 @@ public class MainFrame extends javax.swing.JFrame {
         delete_Defi_JButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainJavaSwing/Image/delete.png"))); // NOI18N
         delete_Defi_JButton.setText("Delete");
 
-        translate_OutputDefi_JLabel.setText("Dịch nghĩa");
-
         javax.swing.GroupLayout Definition_JPanelLayout = new javax.swing.GroupLayout(Definition_JPanel);
         Definition_JPanel.setLayout(Definition_JPanelLayout);
         Definition_JPanelLayout.setHorizontalGroup(
@@ -363,18 +386,13 @@ public class MainFrame extends javax.swing.JFrame {
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
             .addGroup(Definition_JPanelLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(Definition_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Definition_JPanelLayout.createSequentialGroup()
-                        .addComponent(word_OutputDefi_JLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(soundUS_Defi_JButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(soundUK_Defi_JButton, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(Definition_JPanelLayout.createSequentialGroup()
-                        .addGroup(Definition_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(spelling_OutputDefi_JLabel)
-                            .addComponent(translate_OutputDefi_JLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(word_OutputDefi_JLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(spelling_OutputDefi_JLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(soundUS_Defi_JButton)
+                .addGap(0, 0, 0)
+                .addComponent(soundUK_Defi_JButton, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Definition_JPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -387,13 +405,10 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(Definition_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(word_OutputDefi_JLabel)
                     .addComponent(soundUS_Defi_JButton)
-                    .addComponent(soundUK_Defi_JButton))
-                .addGap(2, 2, 2)
-                .addComponent(spelling_OutputDefi_JLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(translate_OutputDefi_JLabel)
+                    .addComponent(soundUK_Defi_JButton)
+                    .addComponent(spelling_OutputDefi_JLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
                 .addGap(1, 1, 1)
                 .addComponent(delete_Defi_JButton)
                 .addGap(10, 10, 10))
@@ -491,7 +506,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(114, Short.MAX_VALUE))
         );
 
-        Defi_JTabbedPane.addTab("REVISE", Revise_JPanel);
+        Defi_JTabbedPane.addTab("EDIT", Revise_JPanel);
 
         Add_JPanel.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -702,6 +717,21 @@ public class MainFrame extends javax.swing.JFrame {
         translate_InputAdd_JTextField.setText("");
     }//GEN-LAST:event_translate_InputAdd_JTextFieldMouseClicked
 
+    private void findSearch_JButtonAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_findSearch_JButtonAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_findSearch_JButtonAncestorAdded
+
+    private void Data_OutputDefi_JTextAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Data_OutputDefi_JTextAreaMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_Data_OutputDefi_JTextAreaMouseClicked
+
+    private void Data_OutputDefi_JTextAreaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_Data_OutputDefi_JTextAreaAncestorAdded
+        // TODO add your handling code here:
+        Data_OutputDefi_JTextArea.setEditable(false);
+        Data_OutputDefi_JTextArea.setText("Đây là nơi hiện data");
+    }//GEN-LAST:event_Data_OutputDefi_JTextAreaAncestorAdded
+
     /**
      * @param args the command line arguments
      */
@@ -781,7 +811,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton submit_Add_JButton;
     private javax.swing.JButton submit_Revise_JButton;
     private javax.swing.JTextField translate_InputAdd_JTextField;
-    private javax.swing.JLabel translate_OutputDefi_JLabel;
     private javax.swing.JLabel translate_OutputRevise_JLabel;
     private javax.swing.JTextField translate__InputRevise_JTextField;
     private javax.swing.JTextField word_InputAdd_JTextField;

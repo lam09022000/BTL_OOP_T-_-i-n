@@ -188,6 +188,12 @@
                           </StringArray>
                         </Property>
                         <Property name="selectionMode" type="int" value="0"/>
+                        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                          <Color id="Default Cursor"/>
+                        </Property>
+                        <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="66" red="33" type="rgb"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="listResultSearch_JListAncestorAdded"/>
@@ -248,6 +254,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Find"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="findSearch_JButtonAncestorAdded"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -454,22 +463,13 @@
                       <Component id="jScrollPane3" alignment="0" pref="383" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="word_OutputDefi_JLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="soundUS_Defi_JButton" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="soundUK_Defi_JButton" min="-2" pref="76" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="spelling_OutputDefi_JLabel" min="-2" max="-2" attributes="0"/>
-                                      <Component id="translate_OutputDefi_JLabel" min="-2" pref="80" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="word_OutputDefi_JLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="spelling_OutputDefi_JLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="soundUS_Defi_JButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="soundUK_Defi_JButton" min="-2" pref="76" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -486,13 +486,10 @@
                               <Component id="word_OutputDefi_JLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="soundUS_Defi_JButton" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="soundUK_Defi_JButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spelling_OutputDefi_JLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                          <Component id="spelling_OutputDefi_JLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="translate_OutputDefi_JLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane3" pref="276" max="32767" attributes="0"/>
+                          <Component id="jScrollPane3" pref="334" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                           <Component id="delete_Defi_JButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
@@ -517,7 +514,14 @@
                             <EtchetBorder/>
                           </Border>
                         </Property>
+                        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[164, 94]"/>
+                        </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="Data_OutputDefi_JTextAreaAncestorAdded"/>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Data_OutputDefi_JTextAreaMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -555,11 +559,6 @@
                     <Property name="text" type="java.lang.String" value="Delete"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="translate_OutputDefi_JLabel">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="D&#x1ecb;ch ngh&#x129;a"/>
-                  </Properties>
-                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="Revise_JPanel">
@@ -573,8 +572,8 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="REVISE">
-                    <Property name="tabTitle" type="java.lang.String" value="REVISE"/>
+                  <JTabbedPaneConstraints tabName="EDIT">
+                    <Property name="tabTitle" type="java.lang.String" value="EDIT"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
