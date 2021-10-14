@@ -558,6 +558,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Delete"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="delete_Defi_JButtonActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -676,16 +679,25 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="t&#x1eeb; t.anh"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="word_OutputRevise_JLabelMouseClicked"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="spelling_OutputRevise_JLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Phi&#xea;n &#xe2;m"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="spelling_OutputRevise_JLabelMouseClicked"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="translate_OutputRevise_JLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="D&#x1ecb;ch ngh&#x129;a"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="translate_OutputRevise_JLabelMouseClicked"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="submit_Revise_JButton">
                   <Properties>
@@ -694,6 +706,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Submit"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submit_Revise_JButtonActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="clear_Revise_JButton">
                   <Properties>
@@ -702,6 +717,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Clear"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clear_Revise_JButtonActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -791,9 +809,14 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="word_InputAdd_JTextField">
                   <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="99" green="99" red="99" type="rgb"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Enter the word!!"/>
                   </Properties>
                   <Events>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="word_InputAdd_JTextFieldFocusGained"/>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="word_InputAdd_JTextFieldFocusLost"/>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="word_InputAdd_JTextFieldMouseClicked"/>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="word_InputAdd_JTextFieldActionPerformed"/>
                   </Events>
@@ -805,9 +828,14 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="spelling_InputAdd_JTextField">
                   <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="99" green="99" red="99" type="rgb"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Enter Spelling!!"/>
                   </Properties>
                   <Events>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="spelling_InputAdd_JTextFieldFocusGained"/>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="spelling_InputAdd_JTextFieldFocusLost"/>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="spelling_InputAdd_JTextFieldMouseClicked"/>
                   </Events>
                 </Component>
@@ -818,9 +846,14 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="translate_InputAdd_JTextField">
                   <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="99" green="99" red="99" type="rgb"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Enter translate!!"/>
                   </Properties>
                   <Events>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="translate_InputAdd_JTextFieldFocusGained"/>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="translate_InputAdd_JTextFieldFocusLost"/>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="translate_InputAdd_JTextFieldMouseClicked"/>
                   </Events>
                 </Component>
@@ -831,6 +864,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Submit"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submit_Add_JButtonActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="clear_Add_JButton">
                   <Properties>
@@ -839,6 +875,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Clear"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clear_Add_JButtonActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

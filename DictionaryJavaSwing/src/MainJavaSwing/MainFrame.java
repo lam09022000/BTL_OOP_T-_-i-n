@@ -5,6 +5,7 @@
  */
 package MainJavaSwing;
 
+import java.awt.Color;
 import javax.swing.*;
 
 /**
@@ -17,9 +18,10 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
-    final int WIDTH = 615, HEIGHT = 534;
-    //final int MENU_WIDTH = 200, MENU_HEIGHT = 50;
+    private final int WIDTH = 615, HEIGHT = 534;
+    private ImageIcon tick_icon;
     public MainFrame() {
+        tick_icon = new ImageIcon(getClass().getResource("/MainJavaSwing/Image/tick.png"));
         initComponents();
         this.setLocationRelativeTo(null);
         setSize(WIDTH, HEIGHT);
@@ -378,6 +380,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         delete_Defi_JButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainJavaSwing/Image/delete.png"))); // NOI18N
         delete_Defi_JButton.setText("Delete");
+        delete_Defi_JButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delete_Defi_JButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout Definition_JPanelLayout = new javax.swing.GroupLayout(Definition_JPanel);
         Definition_JPanel.setLayout(Definition_JPanelLayout);
@@ -438,16 +445,41 @@ public class MainFrame extends javax.swing.JFrame {
         newWord_InputRevise_JLabel.setText("New word");
 
         word_OutputRevise_JLabel.setText("từ t.anh");
+        word_OutputRevise_JLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                word_OutputRevise_JLabelMouseClicked(evt);
+            }
+        });
 
         spelling_OutputRevise_JLabel.setText("Phiên âm");
+        spelling_OutputRevise_JLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                spelling_OutputRevise_JLabelMouseClicked(evt);
+            }
+        });
 
         translate_OutputRevise_JLabel.setText("Dịch nghĩa");
+        translate_OutputRevise_JLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                translate_OutputRevise_JLabelMouseClicked(evt);
+            }
+        });
 
         submit_Revise_JButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainJavaSwing/Image/submit.png"))); // NOI18N
         submit_Revise_JButton.setText("Submit");
+        submit_Revise_JButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submit_Revise_JButtonActionPerformed(evt);
+            }
+        });
 
         clear_Revise_JButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainJavaSwing/Image/clear.png"))); // NOI18N
         clear_Revise_JButton.setText("Clear");
+        clear_Revise_JButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clear_Revise_JButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout Revise_JPanelLayout = new javax.swing.GroupLayout(Revise_JPanel);
         Revise_JPanel.setLayout(Revise_JPanelLayout);
@@ -514,7 +546,16 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel3.setText("The word by English");
 
+        word_InputAdd_JTextField.setForeground(new java.awt.Color(153, 153, 153));
         word_InputAdd_JTextField.setText("Enter the word!!");
+        word_InputAdd_JTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                word_InputAdd_JTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                word_InputAdd_JTextFieldFocusLost(evt);
+            }
+        });
         word_InputAdd_JTextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 word_InputAdd_JTextFieldMouseClicked(evt);
@@ -528,7 +569,16 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel4.setText("Spelling");
 
+        spelling_InputAdd_JTextField.setForeground(new java.awt.Color(153, 153, 153));
         spelling_InputAdd_JTextField.setText("Enter Spelling!!");
+        spelling_InputAdd_JTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                spelling_InputAdd_JTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                spelling_InputAdd_JTextFieldFocusLost(evt);
+            }
+        });
         spelling_InputAdd_JTextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 spelling_InputAdd_JTextFieldMouseClicked(evt);
@@ -537,7 +587,16 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel5.setText("Translate to VietNamese");
 
+        translate_InputAdd_JTextField.setForeground(new java.awt.Color(153, 153, 153));
         translate_InputAdd_JTextField.setText("Enter translate!!");
+        translate_InputAdd_JTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                translate_InputAdd_JTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                translate_InputAdd_JTextFieldFocusLost(evt);
+            }
+        });
         translate_InputAdd_JTextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 translate_InputAdd_JTextFieldMouseClicked(evt);
@@ -546,9 +605,19 @@ public class MainFrame extends javax.swing.JFrame {
 
         submit_Add_JButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainJavaSwing/Image/submit.png"))); // NOI18N
         submit_Add_JButton.setText("Submit");
+        submit_Add_JButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submit_Add_JButtonActionPerformed(evt);
+            }
+        });
 
         clear_Add_JButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainJavaSwing/Image/clear.png"))); // NOI18N
         clear_Add_JButton.setText("Clear");
+        clear_Add_JButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clear_Add_JButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout Add_JPanelLayout = new javax.swing.GroupLayout(Add_JPanel);
         Add_JPanel.setLayout(Add_JPanelLayout);
@@ -684,6 +753,12 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void clearHistory_JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearHistory_JButtonActionPerformed
         // TODO add your handling code here:
+        int ans =  JOptionPane.showConfirmDialog(rootPane, "Bạn có chắc muốn xóa hết lịch sử?",
+                "Xác nhận xóa lịch sử", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (ans == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(rootPane, "Đã xóa!!!!","Thông báo",
+                    JOptionPane.DEFAULT_OPTION, tick_icon);
+        }
     }//GEN-LAST:event_clearHistory_JButtonActionPerformed
 
     private void Defi_JTabbedPaneAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_Defi_JTabbedPaneAncestorAdded
@@ -731,6 +806,134 @@ public class MainFrame extends javax.swing.JFrame {
         Data_OutputDefi_JTextArea.setEditable(false);
         Data_OutputDefi_JTextArea.setText("Đây là nơi hiện data");
     }//GEN-LAST:event_Data_OutputDefi_JTextAreaAncestorAdded
+
+    private void delete_Defi_JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_Defi_JButtonActionPerformed
+        // TODO add your handling code here:
+        int ans =  JOptionPane.showConfirmDialog(rootPane, "Bạn có chắc muốn xóa?",
+                "Xác nhận xóa từ", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (ans == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(rootPane, "Đã xóa!!!!","Thông báo",
+                    JOptionPane.DEFAULT_OPTION, tick_icon);
+        }
+    }//GEN-LAST:event_delete_Defi_JButtonActionPerformed
+
+    private void clear_Revise_JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear_Revise_JButtonActionPerformed
+        // TODO add your handling code here:
+        int ans =  JOptionPane.showConfirmDialog(rootPane, "Bạn có chắc muốn xóa?",
+                "Xác nhận xóa", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (ans == JOptionPane.YES_OPTION) {
+            word__InputRevise_JTextField.setText("");
+            spelling__InputRevise_JTextField.setText("");
+            translate__InputRevise_JTextField.setText("");
+            JOptionPane.showMessageDialog(rootPane, "Đã xóa!!!!","Thông báo",
+                    JOptionPane.DEFAULT_OPTION, tick_icon);
+        }
+    }//GEN-LAST:event_clear_Revise_JButtonActionPerformed
+
+    private void submit_Revise_JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_Revise_JButtonActionPerformed
+        // TODO add your handling code here:
+        int ans =  JOptionPane.showConfirmDialog(rootPane, "Bạn có chắc muốn sửa từ?",
+                "Xác nhận sửa từ", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (ans == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(rootPane, "Đã sửa!!!!","Thông báo",
+                    JOptionPane.DEFAULT_OPTION, tick_icon);
+        }
+    }//GEN-LAST:event_submit_Revise_JButtonActionPerformed
+
+    private void clear_Add_JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear_Add_JButtonActionPerformed
+        // TODO add your handling code here:
+        int ans =  JOptionPane.showConfirmDialog(rootPane, "Bạn có chắc muốn xóa?",
+                "Xác nhận xóa", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (ans == JOptionPane.YES_OPTION) {
+            word_InputAdd_JTextField.setText("Enter the word!!");
+            word_InputAdd_JTextField.setForeground(Color.GRAY);
+            spelling_InputAdd_JTextField.setText("Enter Spelling!!");
+            spelling_InputAdd_JTextField.setForeground(Color.GRAY);
+            translate_InputAdd_JTextField.setText("Enter translate!!");
+            translate_InputAdd_JTextField.setForeground(Color.GRAY);
+            JOptionPane.showMessageDialog(rootPane, "Đã xóa!!!!","Thông báo",
+                    JOptionPane.DEFAULT_OPTION, tick_icon);
+        }
+    }//GEN-LAST:event_clear_Add_JButtonActionPerformed
+
+    private void submit_Add_JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_Add_JButtonActionPerformed
+        // TODO add your handling code here:
+         int ans =  JOptionPane.showConfirmDialog(rootPane, "Bạn có chắc muốn thêm từ này?",
+                "Xác nhận thêm từ mới", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (ans == JOptionPane.YES_OPTION) {
+            word_InputAdd_JTextField.setText("Enter the word!!");
+            word_InputAdd_JTextField.setForeground(Color.GRAY);
+            spelling_InputAdd_JTextField.setText("Enter Spelling!!");
+            spelling_InputAdd_JTextField.setForeground(Color.GRAY);
+            translate_InputAdd_JTextField.setText("Enter translate!!");
+            translate_InputAdd_JTextField.setForeground(Color.GRAY);
+            JOptionPane.showMessageDialog(rootPane, "Đã thêm từ!!!!","Thông báo",
+                    JOptionPane.DEFAULT_OPTION, tick_icon);
+        }
+    }//GEN-LAST:event_submit_Add_JButtonActionPerformed
+
+    private void word_OutputRevise_JLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_word_OutputRevise_JLabelMouseClicked
+        // TODO add your handling code here:
+        word__InputRevise_JTextField.setText(word_OutputRevise_JLabel.getText());
+    }//GEN-LAST:event_word_OutputRevise_JLabelMouseClicked
+
+    private void spelling_OutputRevise_JLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spelling_OutputRevise_JLabelMouseClicked
+        // TODO add your handling code here:
+        spelling__InputRevise_JTextField.setText(spelling_OutputRevise_JLabel.getText());
+    }//GEN-LAST:event_spelling_OutputRevise_JLabelMouseClicked
+
+    private void translate_OutputRevise_JLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_translate_OutputRevise_JLabelMouseClicked
+        // TODO add your handling code here:
+        translate__InputRevise_JTextField.setText(translate_OutputRevise_JLabel.getText());
+    }//GEN-LAST:event_translate_OutputRevise_JLabelMouseClicked
+
+    private void word_InputAdd_JTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_word_InputAdd_JTextFieldFocusGained
+        // TODO add your handling code here:
+        if (word_InputAdd_JTextField.getText().equals("Enter the word!!")) {
+            word_InputAdd_JTextField.setText("");
+            word_InputAdd_JTextField.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_word_InputAdd_JTextFieldFocusGained
+
+    private void word_InputAdd_JTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_word_InputAdd_JTextFieldFocusLost
+        // TODO add your handling code here:
+        if (word_InputAdd_JTextField.getText().equals("")) {
+            word_InputAdd_JTextField.setText("Enter the word!!");
+            word_InputAdd_JTextField.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_word_InputAdd_JTextFieldFocusLost
+
+    private void spelling_InputAdd_JTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_spelling_InputAdd_JTextFieldFocusGained
+        // TODO add your handling code here:
+        if (spelling_InputAdd_JTextField.getText().equals("Enter Spelling!!")) {
+            spelling_InputAdd_JTextField.setText("");
+            spelling_InputAdd_JTextField.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_spelling_InputAdd_JTextFieldFocusGained
+
+    private void spelling_InputAdd_JTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_spelling_InputAdd_JTextFieldFocusLost
+        // TODO add your handling code here:
+        if (spelling_InputAdd_JTextField.getText().equals("")) {
+            spelling_InputAdd_JTextField.setText("Enter Spelling!!");
+            spelling_InputAdd_JTextField.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_spelling_InputAdd_JTextFieldFocusLost
+
+    private void translate_InputAdd_JTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_translate_InputAdd_JTextFieldFocusGained
+        // TODO add your handling code here:
+        if (translate_InputAdd_JTextField.getText().equals("Enter translate!!")) {
+            translate_InputAdd_JTextField.setText("");
+            translate_InputAdd_JTextField.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_translate_InputAdd_JTextFieldFocusGained
+
+    private void translate_InputAdd_JTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_translate_InputAdd_JTextFieldFocusLost
+        // TODO add your handling code here:
+        if (translate_InputAdd_JTextField.getText().equals("")) {
+            translate_InputAdd_JTextField.setText("Enter translate!!");
+            translate_InputAdd_JTextField.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_translate_InputAdd_JTextFieldFocusLost
 
     /**
      * @param args the command line arguments
