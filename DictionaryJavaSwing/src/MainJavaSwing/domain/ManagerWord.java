@@ -45,18 +45,25 @@ public class ManagerWord {
 
     }
 
-    public void updateWord(){
+    public void updateWord(Word word,Word newWord){
         // Sửa một từ ở đây
-        System.out.println("sua tu");
+        if (word.getWordExplain() != "" && word.getWordTarget() != ""
+            && newWord.getWordExplain() != "" && newWord.getWordTarget() != "")
+        {
+            useDAO.update(word,newWord);
+        } else {
+            System.out.println("Xoa tu chua thanh cong");
+        }
     }
 
     public List<Word> getDictionaries(String s){
+        wordList.clear();
         //lấy ra từ điển ở đây
         if (s != "null") {
-            useDAO.find(s) ;
+            this.wordList.addAll( useDAO.find(s)) ;
         }
         System.out.println("Tim kiem tu theo chuoi truyen vao");
-        return null ;
+        return wordList ;
     }
     public void show() {
         if (wordList == null) {

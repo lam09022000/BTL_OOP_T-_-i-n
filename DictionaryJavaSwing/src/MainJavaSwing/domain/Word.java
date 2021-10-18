@@ -3,6 +3,7 @@ package MainJavaSwing.domain;
 public class Word {
 
     private String wordTarget ;
+    private String wordSpelling ;
     private String wordExplain;
 
     private String sound_VN ;
@@ -10,9 +11,15 @@ public class Word {
 
 
 
-    public Word(String wordTarget, String wordExplain) {
+    public Word(String wordTarget,String wordSpelling, String wordExplain) {
         this.wordTarget = wordTarget;
         this.wordExplain = wordExplain;
+        this.wordSpelling = wordSpelling ;
+    }
+    public Word(String wordTarget, String wordExplain ) {
+        this.wordTarget = wordTarget;
+        this.wordExplain = wordExplain;
+        this.wordSpelling = "wordSpelling" ;
     }
 
     public String getWordTarget() {
@@ -33,5 +40,13 @@ public class Word {
 
     public void show() {
         System.out.println("|" + this.wordTarget + "\t" + "|"+this.wordExplain);
+    }
+
+    public String getWordSpelling() {
+        return wordSpelling;
+    }
+
+    public void setWordSpelling(String wordSpelling) {
+        this.wordSpelling = wordSpelling;
     }
 }

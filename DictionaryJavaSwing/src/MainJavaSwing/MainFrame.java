@@ -9,6 +9,8 @@ import MainJavaSwing.DAO.UseDAO;
 import MainJavaSwing.domain.Word;
 import MainJavaSwing.domain.ManagerWord;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -26,6 +28,11 @@ public class MainFrame extends javax.swing.JFrame {
 
     private static boolean isRunning = false ;
     private static ManagerWord managerWord ;
+    private static List<Word> wordList = new ArrayList<>() ;
+    private static List<Word> historyWord = new ArrayList<>() ;
+    private static Word nowWord = new Word("","") ;
+
+
     public MainFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -103,10 +110,10 @@ public class MainFrame extends javax.swing.JFrame {
         MenuJPane.setAlignmentX(0.0F);
         MenuJPane.setAlignmentY(0.0F);
         MenuJPane.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 MenuJPaneAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -118,12 +125,17 @@ public class MainFrame extends javax.swing.JFrame {
 
         Menu_JTabbedPane.setToolTipText("");
         Menu_JTabbedPane.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 Menu_JTabbedPaneAncestorAdded(evt);
             }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        Menu_JTabbedPane.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Menu_JTabbedPaneMouseClicked(evt);
             }
         });
 
@@ -131,16 +143,16 @@ public class MainFrame extends javax.swing.JFrame {
 
         listResultSearch_JList.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         listResultSearch_JList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "result 1", "result 2", "result 3", "result 4", "result 5", "..." };
+            String[] strings = { "", "", "", "", "", "" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
         listResultSearch_JList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listResultSearch_JList.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 listResultSearch_JListAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -150,6 +162,11 @@ public class MainFrame extends javax.swing.JFrame {
                 listResultSearch_JListMouseClicked(evt);
             }
         });
+        listResultSearch_JList.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                listResultSearch_JListComponentHidden(evt);
+            }
+        });
         jScrollPane1.setViewportView(listResultSearch_JList);
 
         chooseLanguageSearch_JComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ENGLISH", "VIETNAMESE" }));
@@ -157,10 +174,10 @@ public class MainFrame extends javax.swing.JFrame {
         languageSearch_JLabel.setText(" LANGUAGE:");
         languageSearch_JLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
         languageSearch_JLabel.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 languageSearch_JLabelAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -170,10 +187,10 @@ public class MainFrame extends javax.swing.JFrame {
         searchInput_JTextField.setText("Search");
         searchInput_JTextField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 5));
         searchInput_JTextField.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 searchInput_JTextFieldAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -188,9 +205,22 @@ public class MainFrame extends javax.swing.JFrame {
                 searchInput_JTextFieldActionPerformed(evt);
             }
         });
+        searchInput_JTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+//                searchInput_JTextFieldKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchInput_JTextFieldKeyReleased(evt);
+            }
+        });
 
         findSearch_JButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainJavaSwing/Image/search.png"))); // NOI18N
         findSearch_JButton.setText("Find");
+        findSearch_JButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                findSearch_JButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout SearchLayout = new javax.swing.GroupLayout(Search);
         Search.setLayout(SearchLayout);
@@ -201,7 +231,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(SearchLayout.createSequentialGroup()
                 .addGroup(SearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(SearchLayout.createSequentialGroup()
-                        .addComponent(languageSearch_JLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 87, Short.MAX_VALUE)
+                        .addComponent(languageSearch_JLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(chooseLanguageSearch_JComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SearchLayout.createSequentialGroup()
@@ -230,10 +260,10 @@ public class MainFrame extends javax.swing.JFrame {
         languageHistory_JLabel.setText(" LANGUAGE:");
         languageHistory_JLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
         languageHistory_JLabel.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 languageHistory_JLabelAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -256,6 +286,11 @@ public class MainFrame extends javax.swing.JFrame {
             public String getElementAt(int i) { return strings[i]; }
         });
         listResultHistory_JList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listResultHistory_JList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listResultHistory_JListMouseClicked(evt);
+            }
+        });
         jScrollPane7.setViewportView(listResultHistory_JList);
 
         findSearch_JButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainJavaSwing/Image/search.png"))); // NOI18N
@@ -322,20 +357,20 @@ public class MainFrame extends javax.swing.JFrame {
         DefiJPanel.setAlignmentX(0.0F);
         DefiJPanel.setAlignmentY(0.0F);
         DefiJPanel.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 DefiJPanelAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
 
         Defi_JTabbedPane.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 Defi_JTabbedPaneAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -360,6 +395,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         delete_Defi_JButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainJavaSwing/Image/delete.png"))); // NOI18N
         delete_Defi_JButton.setText("Delete");
+        delete_Defi_JButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delete_Defi_JButtonActionPerformed(evt);
+            }
+        });
 
         translate_OutputDefi_JLabel.setText("Dịch nghĩa");
 
@@ -410,10 +450,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         Revise_JPanel.setBackground(new java.awt.Color(204, 204, 204));
         Revise_JPanel.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 Revise_JPanelAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -437,9 +477,19 @@ public class MainFrame extends javax.swing.JFrame {
 
         submit_Revise_JButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainJavaSwing/Image/submit.png"))); // NOI18N
         submit_Revise_JButton.setText("Submit");
+        submit_Revise_JButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submit_Revise_JButtonActionPerformed(evt);
+            }
+        });
 
         clear_Revise_JButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainJavaSwing/Image/clear.png"))); // NOI18N
         clear_Revise_JButton.setText("Clear");
+        clear_Revise_JButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clear_Revise_JButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout Revise_JPanelLayout = new javax.swing.GroupLayout(Revise_JPanel);
         Revise_JPanel.setLayout(Revise_JPanelLayout);
@@ -538,9 +588,19 @@ public class MainFrame extends javax.swing.JFrame {
 
         submit_Add_JButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainJavaSwing/Image/submit.png"))); // NOI18N
         submit_Add_JButton.setText("Submit");
+        submit_Add_JButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submit_Add_JButtonActionPerformed(evt);
+            }
+        });
 
         clear_Add_JButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainJavaSwing/Image/clear.png"))); // NOI18N
         clear_Add_JButton.setText("Clear");
+        clear_Add_JButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clear_Add_JButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout Add_JPanelLayout = new javax.swing.GroupLayout(Add_JPanel);
         Add_JPanel.setLayout(Add_JPanelLayout);
@@ -626,7 +686,7 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MenuJPaneAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_MenuJPaneAncestorAdded
-        // TODO add your handling code here:  
+        // TODO add your handling code here:
     }//GEN-LAST:event_MenuJPaneAncestorAdded
 
     private void Menu_JTabbedPaneAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_Menu_JTabbedPaneAncestorAdded
@@ -661,15 +721,32 @@ public class MainFrame extends javax.swing.JFrame {
         searchInput_JTextField.setText("Search");
     }//GEN-LAST:event_searchInput_JTextFieldAncestorAdded
 
+    // click chuột vào từng từ sau khi tìm kiếm
     private void listResultSearch_JListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listResultSearch_JListMouseClicked
         // TODO add your handling code here:
          if (listResultSearch_JList.getSelectedIndex() !=  -1) {
             String resultSearch = listResultSearch_JList.getSelectedValue();
             searchInput_JTextField.setText(resultSearch);
         }
+         nowWord = wordList.get(listResultSearch_JList.getSelectedIndex()) ;
+        setFrameDefi(nowWord);
+         historyWord.add(wordList.get(listResultSearch_JList.getSelectedIndex())) ;
     }//GEN-LAST:event_listResultSearch_JListMouseClicked
 
-    
+    private void setFrameDefi(Word word) {
+
+        //DEFI
+        word_OutputDefi_JLabel.setText(word.getWordTarget());
+        spelling_OutputDefi_JLabel.setText(word.getWordSpelling());
+        translate_OutputDefi_JLabel.setText(word.getWordExplain());
+        Data_OutputDefi_JTextArea.setText(word.getWordExplain());
+
+        //REVI
+        word__InputRevise_JTextField.setText(word.getWordTarget());
+        spelling__InputRevise_JTextField.setText("a");
+        translate__InputRevise_JTextField.setText(word.getWordExplain());
+
+    }
     private void listResultSearch_JListAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_listResultSearch_JListAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_listResultSearch_JListAncestorAdded
@@ -708,6 +785,97 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         translate_InputAdd_JTextField.setText("");
     }//GEN-LAST:event_translate_InputAdd_JTextFieldMouseClicked
+
+    // tìm kiếm ngay sau khi nhập vào
+    private void findSearch_JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findSearch_JButtonActionPerformed
+        // TODO add your handling code here:
+        
+        String findWord = searchInput_JTextField.getText() ;
+        wordList.clear();
+        wordList =  managerWord.getDictionaries(findWord) ;
+        listResultSearch_JList.setModel(new javax.swing.AbstractListModel<String>() {
+            public int getSize() { return wordList.size(); }
+            public String getElementAt(int i) { return wordList.get(i).getWordTarget(); }
+        });
+    }//GEN-LAST:event_findSearch_JButtonActionPerformed
+
+    // thêm từ mới
+    private void submit_Add_JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_Add_JButtonActionPerformed
+        String wordEN = word_InputAdd_JTextField.getText() ;
+        String wordVN = translate_InputAdd_JTextField.getText() ;
+        String spelling = "" ;
+        Word newWord = new Word(wordEN , wordVN) ;
+        managerWord.addWord(newWord);
+    }//GEN-LAST:event_submit_Add_JButtonActionPerformed
+
+    private void listResultSearch_JListComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_listResultSearch_JListComponentHidden
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listResultSearch_JListComponentHidden
+
+    private void listResultHistory_JListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listResultHistory_JListMouseClicked
+        // history
+        if (listResultHistory_JList.getSelectedIndex() !=  -1) {
+            String resultSearch = listResultHistory_JList.getSelectedValue();
+        }
+        nowWord = historyWord.get(listResultHistory_JList.getSelectedIndex()) ;
+        setFrameDefi(nowWord);
+    }//GEN-LAST:event_listResultHistory_JListMouseClicked
+
+    // chuyển qua tab history
+    private void Menu_JTabbedPaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu_JTabbedPaneMouseClicked
+        System.out.println("history");
+        listResultHistory_JList.setModel(new javax.swing.AbstractListModel<String>() {
+            public int getSize() { return historyWord.size(); }
+            public String getElementAt(int i) { return historyWord.get(historyWord.size() - i - 1).getWordTarget(); }
+        });
+    }//GEN-LAST:event_Menu_JTabbedPaneMouseClicked
+
+    // xóa một từ
+    private void delete_Defi_JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_Defi_JButtonActionPerformed
+        if(nowWord.getWordTarget() != "") {
+            managerWord.deleteWord(nowWord);
+            setFrameDefi(new Word("","",""));
+            wordList.clear();
+        }
+    }//GEN-LAST:event_delete_Defi_JButtonActionPerformed
+
+    // xóa thông tin trong update
+    private void clear_Revise_JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear_Revise_JButtonActionPerformed
+        System.out.println("Clear update");
+        word__InputRevise_JTextField.setText(nowWord.getWordTarget()) ;
+        spelling__InputRevise_JTextField.setText(nowWord.getWordSpelling());
+        translate__InputRevise_JTextField.setText(nowWord.getWordExplain());
+
+    }//GEN-LAST:event_clear_Revise_JButtonActionPerformed
+
+    // update một từ
+    private void submit_Revise_JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_Revise_JButtonActionPerformed
+        System.out.println("Submit Update");
+        Word newWord = new Word(word__InputRevise_JTextField.getText(),
+                                spelling__InputRevise_JTextField.getText(),
+                                translate__InputRevise_JTextField.getText()) ;
+        managerWord.updateWord(nowWord,newWord);
+    }//GEN-LAST:event_submit_Revise_JButtonActionPerformed
+
+    // xóa thông tin trong bảng thêm từ
+    private void clear_Add_JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear_Add_JButtonActionPerformed
+        System.out.println("Clear add");
+        word_InputAdd_JTextField.setText("");
+        spelling_InputAdd_JTextField.setText("");
+        translate_InputAdd_JTextField.setText("");
+    }//GEN-LAST:event_clear_Add_JButtonActionPerformed
+
+    // tìm kiếm một từ
+    private void searchInput_JTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchInput_JTextFieldKeyReleased
+        // TODO add your handling code here:
+        String find = searchInput_JTextField.getText() ;
+        wordList.clear();
+        wordList =  managerWord.getDictionaries(find) ;
+        listResultSearch_JList.setModel(new javax.swing.AbstractListModel<String>() {
+            public int getSize() { return wordList.size(); }
+            public String getElementAt(int i) { return wordList.get(i).getWordTarget(); }
+        });
+    }//GEN-LAST:event_searchInput_JTextFieldKeyReleased
 
     /**
      * @param args the command line arguments
@@ -800,7 +968,7 @@ public class MainFrame extends javax.swing.JFrame {
                 System.out.println(UpdateWordExplain + updateWordTarget);
                 Word UpdateDictionary = new Word(updateWordTarget,UpdateWordExplain) ;
                 UpdateDictionary.show();
-                managerWord.updateWord();
+//                managerWord.updateWord();
                 break;
             case 4 :
                 managerWord.deleteWord(new Word("",""));
