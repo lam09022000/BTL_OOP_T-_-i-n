@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="DictionaryJavaSwing.jar" size="43549" download="eager" />
+    <jar href="DictionaryJavaSwing.jar" size="43489" download="eager" />
   </resources>
   <application-desc main-class="MainJavaSwing.MainFrame"  name="DictionaryJavaSwing" >
   </application-desc>

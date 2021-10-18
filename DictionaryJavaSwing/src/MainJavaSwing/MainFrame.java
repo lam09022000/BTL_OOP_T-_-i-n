@@ -18,7 +18,7 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
-    private final int WIDTH = 615, HEIGHT = 534;
+    private final int WIDTH = 625, HEIGHT = 534;
     private ImageIcon tick_icon;
     public MainFrame() {
         tick_icon = new ImageIcon(getClass().getResource("/MainJavaSwing/Image/tick.png"));
@@ -53,7 +53,7 @@ public class MainFrame extends javax.swing.JFrame {
         clearHistory_JButton = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
         listResultHistory_JList = new javax.swing.JList<>();
-        findSearch_JButton1 = new javax.swing.JButton();
+        deleteHistory_JButton = new javax.swing.JButton();
         DefiJPanel = new javax.swing.JPanel();
         Defi_JTabbedPane = new javax.swing.JTabbedPane();
         Definition_JPanel = new javax.swing.JPanel();
@@ -64,17 +64,17 @@ public class MainFrame extends javax.swing.JFrame {
         soundUS_Defi_JButton = new javax.swing.JButton();
         soundUK_Defi_JButton = new javax.swing.JButton();
         delete_Defi_JButton = new javax.swing.JButton();
-        Revise_JPanel = new javax.swing.JPanel();
-        word__InputRevise_JTextField = new javax.swing.JTextField();
-        spelling__InputRevise_JTextField = new javax.swing.JTextField();
-        translate__InputRevise_JTextField = new javax.swing.JTextField();
-        lastWord_OutputRevise_JLabel = new javax.swing.JLabel();
-        newWord_InputRevise_JLabel = new javax.swing.JLabel();
-        word_OutputRevise_JLabel = new javax.swing.JLabel();
-        spelling_OutputRevise_JLabel = new javax.swing.JLabel();
-        translate_OutputRevise_JLabel = new javax.swing.JLabel();
-        submit_Revise_JButton = new javax.swing.JButton();
-        clear_Revise_JButton = new javax.swing.JButton();
+        Edit_JPanel = new javax.swing.JPanel();
+        word__InputEdit_JTextField = new javax.swing.JTextField();
+        spelling__InputEdit_JTextField = new javax.swing.JTextField();
+        word_OutputEdit_JLabel = new javax.swing.JLabel();
+        spelling_OutputEdit_JLabel = new javax.swing.JLabel();
+        translate_OutputEdit_JLabel = new javax.swing.JLabel();
+        submit_Edit_JButton = new javax.swing.JButton();
+        clear_Edit_JButton = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        translate_InputEdit_JTextArea = new javax.swing.JTextArea();
         Add_JPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -82,14 +82,16 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         spelling_InputAdd_JTextField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        translate_InputAdd_JTextField = new javax.swing.JTextField();
         submit_Add_JButton = new javax.swing.JButton();
         clear_Add_JButton = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        translate_InputAdd_jTextArea = new javax.swing.JTextArea();
 
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("MainFrame");
+        setTitle("Dictionary_group_HLN");
+        setResizable(false);
 
         MenuJPane.setBackground(new java.awt.Color(0, 0, 204));
         MenuJPane.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -206,7 +208,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(SearchLayout.createSequentialGroup()
                 .addGroup(SearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(SearchLayout.createSequentialGroup()
-                        .addComponent(languageSearch_JLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 87, Short.MAX_VALUE)
+                        .addComponent(languageSearch_JLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 97, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(chooseLanguageSearch_JComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SearchLayout.createSequentialGroup()
@@ -263,8 +265,13 @@ public class MainFrame extends javax.swing.JFrame {
         listResultHistory_JList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane7.setViewportView(listResultHistory_JList);
 
-        findSearch_JButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainJavaSwing/Image/search.png"))); // NOI18N
-        findSearch_JButton1.setText("Find");
+        deleteHistory_JButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainJavaSwing/Image/delete.png"))); // NOI18N
+        deleteHistory_JButton.setText("Delete");
+        deleteHistory_JButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteHistory_JButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout HistoryLayout = new javax.swing.GroupLayout(History);
         History.setLayout(HistoryLayout);
@@ -280,7 +287,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(HistoryLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(findSearch_JButton1)
+                        .addComponent(deleteHistory_JButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(clearHistory_JButton)))
                 .addContainerGap())
@@ -296,7 +303,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(HistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clearHistory_JButton)
-                    .addComponent(findSearch_JButton1))
+                    .addComponent(deleteHistory_JButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -423,122 +430,125 @@ public class MainFrame extends javax.swing.JFrame {
 
         Defi_JTabbedPane.addTab("DEFINITION", Definition_JPanel);
 
-        Revise_JPanel.setBackground(new java.awt.Color(204, 204, 204));
-        Revise_JPanel.addAncestorListener(new javax.swing.event.AncestorListener() {
+        Edit_JPanel.setBackground(new java.awt.Color(204, 204, 204));
+        Edit_JPanel.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                Revise_JPanelAncestorAdded(evt);
+                Edit_JPanelAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
 
-        word__InputRevise_JTextField.addActionListener(new java.awt.event.ActionListener() {
+        word__InputEdit_JTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                word__InputRevise_JTextFieldActionPerformed(evt);
+                word__InputEdit_JTextFieldActionPerformed(evt);
             }
         });
 
-        lastWord_OutputRevise_JLabel.setText("Last word");
-
-        newWord_InputRevise_JLabel.setText("New word");
-
-        word_OutputRevise_JLabel.setText("từ t.anh");
-        word_OutputRevise_JLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+        word_OutputEdit_JLabel.setText("The Word");
+        word_OutputEdit_JLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                word_OutputRevise_JLabelMouseClicked(evt);
+                word_OutputEdit_JLabelMouseClicked(evt);
             }
         });
 
-        spelling_OutputRevise_JLabel.setText("Phiên âm");
-        spelling_OutputRevise_JLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+        spelling_OutputEdit_JLabel.setText("Spelling");
+        spelling_OutputEdit_JLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                spelling_OutputRevise_JLabelMouseClicked(evt);
+                spelling_OutputEdit_JLabelMouseClicked(evt);
             }
         });
 
-        translate_OutputRevise_JLabel.setText("Dịch nghĩa");
-        translate_OutputRevise_JLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+        translate_OutputEdit_JLabel.setText("Translate to Vietnamese");
+        translate_OutputEdit_JLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                translate_OutputRevise_JLabelMouseClicked(evt);
+                translate_OutputEdit_JLabelMouseClicked(evt);
             }
         });
 
-        submit_Revise_JButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainJavaSwing/Image/submit.png"))); // NOI18N
-        submit_Revise_JButton.setText("Submit");
-        submit_Revise_JButton.addActionListener(new java.awt.event.ActionListener() {
+        submit_Edit_JButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainJavaSwing/Image/submit.png"))); // NOI18N
+        submit_Edit_JButton.setText("Submit");
+        submit_Edit_JButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submit_Revise_JButtonActionPerformed(evt);
+                submit_Edit_JButtonActionPerformed(evt);
             }
         });
 
-        clear_Revise_JButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainJavaSwing/Image/clear.png"))); // NOI18N
-        clear_Revise_JButton.setText("Clear");
-        clear_Revise_JButton.addActionListener(new java.awt.event.ActionListener() {
+        clear_Edit_JButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainJavaSwing/Image/clear.png"))); // NOI18N
+        clear_Edit_JButton.setText("Clear");
+        clear_Edit_JButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clear_Revise_JButtonActionPerformed(evt);
+                clear_Edit_JButtonActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout Revise_JPanelLayout = new javax.swing.GroupLayout(Revise_JPanel);
-        Revise_JPanel.setLayout(Revise_JPanelLayout);
-        Revise_JPanelLayout.setHorizontalGroup(
-            Revise_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Revise_JPanelLayout.createSequentialGroup()
-                .addGroup(Revise_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Revise_JPanelLayout.createSequentialGroup()
+        jLabel6.setText("Edit the word");
+
+        translate_InputEdit_JTextArea.setColumns(20);
+        translate_InputEdit_JTextArea.setRows(5);
+        jScrollPane4.setViewportView(translate_InputEdit_JTextArea);
+
+        javax.swing.GroupLayout Edit_JPanelLayout = new javax.swing.GroupLayout(Edit_JPanel);
+        Edit_JPanel.setLayout(Edit_JPanelLayout);
+        Edit_JPanelLayout.setHorizontalGroup(
+            Edit_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Edit_JPanelLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(clear_Edit_JButton, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(submit_Edit_JButton)
+                .addGap(54, 54, 54))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Edit_JPanelLayout.createSequentialGroup()
+                .addGroup(Edit_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(Edit_JPanelLayout.createSequentialGroup()
+                        .addGap(0, 24, Short.MAX_VALUE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Edit_JPanelLayout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(jLabel6)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Edit_JPanelLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addGroup(Revise_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(translate_OutputRevise_JLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(word_OutputRevise_JLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lastWord_OutputRevise_JLabel)
-                            .addComponent(spelling_OutputRevise_JLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(Revise_JPanelLayout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(clear_Revise_JButton, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(Revise_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Revise_JPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                        .addGroup(Revise_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(Revise_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(translate__InputRevise_JTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(word__InputRevise_JTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(spelling__InputRevise_JTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(newWord_InputRevise_JLabel))
-                        .addGap(36, 36, 36))
-                    .addGroup(Revise_JPanelLayout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(submit_Revise_JButton)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(Edit_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(spelling__InputEdit_JTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(word__InputEdit_JTextField)
+                            .addGroup(Edit_JPanelLayout.createSequentialGroup()
+                                .addGroup(Edit_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(word_OutputEdit_JLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(spelling_OutputEdit_JLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(translate_OutputEdit_JLabel))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(24, 24, 24))
         );
-        Revise_JPanelLayout.setVerticalGroup(
-            Revise_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Revise_JPanelLayout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(Revise_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lastWord_OutputRevise_JLabel)
-                    .addComponent(newWord_InputRevise_JLabel))
+        Edit_JPanelLayout.setVerticalGroup(
+            Edit_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Edit_JPanelLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel6)
+                .addGap(17, 17, 17)
+                .addComponent(word_OutputEdit_JLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(word__InputEdit_JTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(spelling_OutputEdit_JLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(spelling__InputEdit_JTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(Revise_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(word__InputRevise_JTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(word_OutputRevise_JLabel))
+                .addComponent(translate_OutputEdit_JLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Revise_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(spelling__InputRevise_JTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spelling_OutputRevise_JLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Revise_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(translate_OutputRevise_JLabel)
-                    .addComponent(translate__InputRevise_JTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(86, 86, 86)
-                .addGroup(Revise_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(submit_Revise_JButton)
-                    .addComponent(clear_Revise_JButton))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 68, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Edit_JPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(Edit_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(clear_Edit_JButton)
+                    .addComponent(submit_Edit_JButton))
+                .addContainerGap())
         );
 
-        Defi_JTabbedPane.addTab("EDIT", Revise_JPanel);
+        Defi_JTabbedPane.addTab("EDIT", Edit_JPanel);
 
         Add_JPanel.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -587,22 +597,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel5.setText("Translate to VietNamese");
 
-        translate_InputAdd_JTextField.setForeground(new java.awt.Color(153, 153, 153));
-        translate_InputAdd_JTextField.setText("Enter translate!!");
-        translate_InputAdd_JTextField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                translate_InputAdd_JTextFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                translate_InputAdd_JTextFieldFocusLost(evt);
-            }
-        });
-        translate_InputAdd_JTextField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                translate_InputAdd_JTextFieldMouseClicked(evt);
-            }
-        });
-
         submit_Add_JButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MainJavaSwing/Image/submit.png"))); // NOI18N
         submit_Add_JButton.setText("Submit");
         submit_Add_JButton.addActionListener(new java.awt.event.ActionListener() {
@@ -618,6 +612,26 @@ public class MainFrame extends javax.swing.JFrame {
                 clear_Add_JButtonActionPerformed(evt);
             }
         });
+
+        translate_InputAdd_jTextArea.setColumns(20);
+        translate_InputAdd_jTextArea.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        translate_InputAdd_jTextArea.setForeground(new java.awt.Color(153, 153, 153));
+        translate_InputAdd_jTextArea.setRows(5);
+        translate_InputAdd_jTextArea.setText("Enter Translate!!");
+        translate_InputAdd_jTextArea.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                translate_InputAdd_jTextAreaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                translate_InputAdd_jTextAreaFocusLost(evt);
+            }
+        });
+        translate_InputAdd_jTextArea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                translate_InputAdd_jTextAreaMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(translate_InputAdd_jTextArea);
 
         javax.swing.GroupLayout Add_JPanelLayout = new javax.swing.GroupLayout(Add_JPanel);
         Add_JPanel.setLayout(Add_JPanelLayout);
@@ -636,14 +650,14 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(spelling_InputAdd_JTextField)
                             .addComponent(jLabel5)
-                            .addComponent(translate_InputAdd_JTextField))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Add_JPanelLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(clear_Add_JButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-                .addComponent(submit_Add_JButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Add_JPanelLayout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(clear_Add_JButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(submit_Add_JButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20))
+                            .addComponent(jScrollPane2))))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         Add_JPanelLayout.setVerticalGroup(
             Add_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -661,12 +675,14 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(translate_InputAdd_JTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Add_JPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(Add_JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(submit_Add_JButton)
-                    .addComponent(clear_Add_JButton))
-                .addGap(46, 46, 46))
+                    .addComponent(clear_Add_JButton)
+                    .addComponent(submit_Add_JButton))
+                .addContainerGap())
         );
 
         Defi_JTabbedPane.addTab("ADD", Add_JPanel);
@@ -765,13 +781,13 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Defi_JTabbedPaneAncestorAdded
 
-    private void Revise_JPanelAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_Revise_JPanelAncestorAdded
+    private void Edit_JPanelAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_Edit_JPanelAncestorAdded
         // TODO add your handling code here:
-    }//GEN-LAST:event_Revise_JPanelAncestorAdded
+    }//GEN-LAST:event_Edit_JPanelAncestorAdded
 
-    private void word__InputRevise_JTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_word__InputRevise_JTextFieldActionPerformed
+    private void word__InputEdit_JTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_word__InputEdit_JTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_word__InputRevise_JTextFieldActionPerformed
+    }//GEN-LAST:event_word__InputEdit_JTextFieldActionPerformed
 
     private void word_InputAdd_JTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_word_InputAdd_JTextFieldActionPerformed
         // TODO add your handling code here:
@@ -779,18 +795,13 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void word_InputAdd_JTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_word_InputAdd_JTextFieldMouseClicked
         // TODO add your handling code here:
-        word_InputAdd_JTextField.setText("");
+        //word_InputAdd_JTextField.setText("");
     }//GEN-LAST:event_word_InputAdd_JTextFieldMouseClicked
 
     private void spelling_InputAdd_JTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spelling_InputAdd_JTextFieldMouseClicked
         // TODO add your handling code here:
-        spelling_InputAdd_JTextField.setText("");
+        //spelling_InputAdd_JTextField.setText("");
     }//GEN-LAST:event_spelling_InputAdd_JTextFieldMouseClicked
-
-    private void translate_InputAdd_JTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_translate_InputAdd_JTextFieldMouseClicked
-        // TODO add your handling code here:
-        translate_InputAdd_JTextField.setText("");
-    }//GEN-LAST:event_translate_InputAdd_JTextFieldMouseClicked
 
     private void findSearch_JButtonAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_findSearch_JButtonAncestorAdded
         // TODO add your handling code here:
@@ -817,20 +828,20 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_delete_Defi_JButtonActionPerformed
 
-    private void clear_Revise_JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear_Revise_JButtonActionPerformed
+    private void clear_Edit_JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear_Edit_JButtonActionPerformed
         // TODO add your handling code here:
         int ans =  JOptionPane.showConfirmDialog(rootPane, "Bạn có chắc muốn xóa?",
                 "Xác nhận xóa", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (ans == JOptionPane.YES_OPTION) {
-            word__InputRevise_JTextField.setText("");
-            spelling__InputRevise_JTextField.setText("");
-            translate__InputRevise_JTextField.setText("");
+            word__InputEdit_JTextField.setText("");
+            spelling__InputEdit_JTextField.setText("");
+            translate_InputEdit_JTextArea.setText("");
             JOptionPane.showMessageDialog(rootPane, "Đã xóa!!!!","Thông báo",
                     JOptionPane.DEFAULT_OPTION, tick_icon);
         }
-    }//GEN-LAST:event_clear_Revise_JButtonActionPerformed
+    }//GEN-LAST:event_clear_Edit_JButtonActionPerformed
 
-    private void submit_Revise_JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_Revise_JButtonActionPerformed
+    private void submit_Edit_JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_Edit_JButtonActionPerformed
         // TODO add your handling code here:
         int ans =  JOptionPane.showConfirmDialog(rootPane, "Bạn có chắc muốn sửa từ?",
                 "Xác nhận sửa từ", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -838,7 +849,7 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Đã sửa!!!!","Thông báo",
                     JOptionPane.DEFAULT_OPTION, tick_icon);
         }
-    }//GEN-LAST:event_submit_Revise_JButtonActionPerformed
+    }//GEN-LAST:event_submit_Edit_JButtonActionPerformed
 
     private void clear_Add_JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear_Add_JButtonActionPerformed
         // TODO add your handling code here:
@@ -849,8 +860,8 @@ public class MainFrame extends javax.swing.JFrame {
             word_InputAdd_JTextField.setForeground(Color.GRAY);
             spelling_InputAdd_JTextField.setText("Enter Spelling!!");
             spelling_InputAdd_JTextField.setForeground(Color.GRAY);
-            translate_InputAdd_JTextField.setText("Enter translate!!");
-            translate_InputAdd_JTextField.setForeground(Color.GRAY);
+            translate_InputAdd_jTextArea.setText("Enter Translate!!");
+            translate_InputAdd_jTextArea.setForeground(Color.GRAY);
             JOptionPane.showMessageDialog(rootPane, "Đã xóa!!!!","Thông báo",
                     JOptionPane.DEFAULT_OPTION, tick_icon);
         }
@@ -865,27 +876,27 @@ public class MainFrame extends javax.swing.JFrame {
             word_InputAdd_JTextField.setForeground(Color.GRAY);
             spelling_InputAdd_JTextField.setText("Enter Spelling!!");
             spelling_InputAdd_JTextField.setForeground(Color.GRAY);
-            translate_InputAdd_JTextField.setText("Enter translate!!");
-            translate_InputAdd_JTextField.setForeground(Color.GRAY);
+            translate_InputAdd_jTextArea.setText("Enter Translate!!");
+            translate_InputAdd_jTextArea.setForeground(Color.GRAY);
             JOptionPane.showMessageDialog(rootPane, "Đã thêm từ!!!!","Thông báo",
                     JOptionPane.DEFAULT_OPTION, tick_icon);
         }
     }//GEN-LAST:event_submit_Add_JButtonActionPerformed
 
-    private void word_OutputRevise_JLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_word_OutputRevise_JLabelMouseClicked
+    private void word_OutputEdit_JLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_word_OutputEdit_JLabelMouseClicked
         // TODO add your handling code here:
-        word__InputRevise_JTextField.setText(word_OutputRevise_JLabel.getText());
-    }//GEN-LAST:event_word_OutputRevise_JLabelMouseClicked
+        //word__InputRevise_JTextField.setText(word_OutputRevise_JLabel.getText());
+    }//GEN-LAST:event_word_OutputEdit_JLabelMouseClicked
 
-    private void spelling_OutputRevise_JLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spelling_OutputRevise_JLabelMouseClicked
+    private void spelling_OutputEdit_JLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spelling_OutputEdit_JLabelMouseClicked
         // TODO add your handling code here:
-        spelling__InputRevise_JTextField.setText(spelling_OutputRevise_JLabel.getText());
-    }//GEN-LAST:event_spelling_OutputRevise_JLabelMouseClicked
+        //spelling__InputRevise_JTextField.setText(spelling_OutputRevise_JLabel.getText());
+    }//GEN-LAST:event_spelling_OutputEdit_JLabelMouseClicked
 
-    private void translate_OutputRevise_JLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_translate_OutputRevise_JLabelMouseClicked
+    private void translate_OutputEdit_JLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_translate_OutputEdit_JLabelMouseClicked
         // TODO add your handling code here:
-        translate__InputRevise_JTextField.setText(translate_OutputRevise_JLabel.getText());
-    }//GEN-LAST:event_translate_OutputRevise_JLabelMouseClicked
+        //translate__InputRevise_JTextField.setText(translate_OutputRevise_JLabel.getText());
+    }//GEN-LAST:event_translate_OutputEdit_JLabelMouseClicked
 
     private void word_InputAdd_JTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_word_InputAdd_JTextFieldFocusGained
         // TODO add your handling code here:
@@ -919,21 +930,35 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_spelling_InputAdd_JTextFieldFocusLost
 
-    private void translate_InputAdd_JTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_translate_InputAdd_JTextFieldFocusGained
+    private void deleteHistory_JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteHistory_JButtonActionPerformed
         // TODO add your handling code here:
-        if (translate_InputAdd_JTextField.getText().equals("Enter translate!!")) {
-            translate_InputAdd_JTextField.setText("");
-            translate_InputAdd_JTextField.setForeground(Color.BLACK);
+        int ans =  JOptionPane.showConfirmDialog(rootPane, "Bạn có chắc muốn xóa từ này khỏi lịch sử?",
+                "Xác nhận xóa từ", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (ans == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(rootPane, "Đã xóa!!!!","Thông báo",
+                    JOptionPane.DEFAULT_OPTION, tick_icon);
         }
-    }//GEN-LAST:event_translate_InputAdd_JTextFieldFocusGained
+    }//GEN-LAST:event_deleteHistory_JButtonActionPerformed
 
-    private void translate_InputAdd_JTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_translate_InputAdd_JTextFieldFocusLost
+    private void translate_InputAdd_jTextAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_translate_InputAdd_jTextAreaMouseClicked
         // TODO add your handling code here:
-        if (translate_InputAdd_JTextField.getText().equals("")) {
-            translate_InputAdd_JTextField.setText("Enter translate!!");
-            translate_InputAdd_JTextField.setForeground(Color.GRAY);
+    }//GEN-LAST:event_translate_InputAdd_jTextAreaMouseClicked
+
+    private void translate_InputAdd_jTextAreaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_translate_InputAdd_jTextAreaFocusGained
+        // TODO add your handling code here:
+        if (translate_InputAdd_jTextArea.getText().equals("Enter Translate!!")) {
+            translate_InputAdd_jTextArea.setText("");
+            translate_InputAdd_jTextArea.setForeground(Color.BLACK);
         }
-    }//GEN-LAST:event_translate_InputAdd_JTextFieldFocusLost
+    }//GEN-LAST:event_translate_InputAdd_jTextAreaFocusGained
+
+    private void translate_InputAdd_jTextAreaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_translate_InputAdd_jTextAreaFocusLost
+        // TODO add your handling code here:
+        if (spelling_InputAdd_JTextField.getText().equals("")) {
+            spelling_InputAdd_JTextField.setText("Enter Translate!!");
+            spelling_InputAdd_JTextField.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_translate_InputAdd_jTextAreaFocusLost
 
     /**
      * @param args the command line arguments
@@ -976,49 +1001,50 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel DefiJPanel;
     private javax.swing.JTabbedPane Defi_JTabbedPane;
     private javax.swing.JPanel Definition_JPanel;
+    private javax.swing.JPanel Edit_JPanel;
     private javax.swing.JPanel History;
     private javax.swing.JPanel MenuJPane;
     private javax.swing.JTabbedPane Menu_JTabbedPane;
-    private javax.swing.JPanel Revise_JPanel;
     private javax.swing.JPanel Search;
     private javax.swing.JComboBox<String> chooseLanguageHistory_JComboBox;
     private javax.swing.JComboBox<String> chooseLanguageSearch_JComboBox;
     private javax.swing.JButton clearHistory_JButton;
     private javax.swing.JButton clear_Add_JButton;
-    private javax.swing.JButton clear_Revise_JButton;
+    private javax.swing.JButton clear_Edit_JButton;
+    private javax.swing.JButton deleteHistory_JButton;
     private javax.swing.JButton delete_Defi_JButton;
     private javax.swing.JButton findSearch_JButton;
-    private javax.swing.JButton findSearch_JButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel languageHistory_JLabel;
     private javax.swing.JLabel languageSearch_JLabel;
-    private javax.swing.JLabel lastWord_OutputRevise_JLabel;
     private javax.swing.JList<String> listResultHistory_JList;
     private javax.swing.JList<String> listResultSearch_JList;
-    private javax.swing.JLabel newWord_InputRevise_JLabel;
     private javax.swing.JTextField searchInput_JTextField;
     private javax.swing.JButton soundUK_Defi_JButton;
     private javax.swing.JButton soundUS_Defi_JButton;
     private javax.swing.JTextField spelling_InputAdd_JTextField;
     private javax.swing.JLabel spelling_OutputDefi_JLabel;
-    private javax.swing.JLabel spelling_OutputRevise_JLabel;
-    private javax.swing.JTextField spelling__InputRevise_JTextField;
+    private javax.swing.JLabel spelling_OutputEdit_JLabel;
+    private javax.swing.JTextField spelling__InputEdit_JTextField;
     private javax.swing.JButton submit_Add_JButton;
-    private javax.swing.JButton submit_Revise_JButton;
-    private javax.swing.JTextField translate_InputAdd_JTextField;
-    private javax.swing.JLabel translate_OutputRevise_JLabel;
-    private javax.swing.JTextField translate__InputRevise_JTextField;
+    private javax.swing.JButton submit_Edit_JButton;
+    private javax.swing.JTextArea translate_InputAdd_jTextArea;
+    private javax.swing.JTextArea translate_InputEdit_JTextArea;
+    private javax.swing.JLabel translate_OutputEdit_JLabel;
     private javax.swing.JTextField word_InputAdd_JTextField;
     private javax.swing.JLabel word_OutputDefi_JLabel;
-    private javax.swing.JLabel word_OutputRevise_JLabel;
-    private javax.swing.JTextField word__InputRevise_JTextField;
+    private javax.swing.JLabel word_OutputEdit_JLabel;
+    private javax.swing.JTextField word__InputEdit_JTextField;
     // End of variables declaration//GEN-END:variables
 }
